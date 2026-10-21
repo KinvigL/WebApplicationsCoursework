@@ -16,7 +16,65 @@
 </style>
 
 <body>
-    <h1>WebTech-Film Database</h1>
-</body>
 
+<h1>WebTech-Film Database</h1>
+
+<input type="button" onclick="topRated()" value="Top Rated"><br>
+
+<div class="movies"></div>
+
+<section id="topRatedMovies">
+ 
+</section>
+
+
+<input type="button" onclick="populateGenre()" value="Populate Genres"><br>
+
+<label for="selectGenre">Movie Genre</label>
+
+<input type="text" id="selectGenre" list="dynamicGenres">
+
+<datalist id="dynamicGenres"></datalist>
+
+
+<script>
+    async function populateGenre() {
+        const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=099030c469492bfd07f8012773a7f0fb";
+
+        const response = await fetch(url);
+
+        const json = await response.json();
+
+        const datalist = document.getElementById("dynamicGenres");
+
+        datalist.innerHTML = ''; // Clear existing options
+
+        json.genres.forEach(genre => {
+            const option = document.createElement("option");
+            option.id = genre.id;
+            option.value = genre.name;
+            datalist.appendChild(option);
+        });  
+    }
+
+    async function topRated() {
+        const url = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=099030c469492bfd07f8012773a7f0fb";
+
+        const response = await fetch(url);
+
+        const json = await response.json();
+
+        //console.log(json)
+
+        const list = json.results;
+
+        list.map((item) => {
+            const name = item.original_title;
+            const poster = item.poster_path;
+            const movie = `<li><img src="${poster}"><h2>${name}</h2></li>`;
+            document.querySelector(".movies").innerHTML += movie;
+        })
+    }
+</script>
+</body>
 </html>
