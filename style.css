@@ -1,0 +1,230 @@
+    :root {
+        --primary-color: #1d1a45;
+        --secondary-color: #f33535;
+        background-color: #dbeaf1;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: var(--primary-color);
+        text-align: center;
+    }
+
+    .gridContainer {
+        display: grid;
+        grid-template-columns: repeat(12, [col-start] 1fr);
+        gap: 20px;
+    }
+
+    table {
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    tr {
+        border: 1px solid var(--secondary-color);
+    }
+
+    /*Mobile Layout*/
+    .gridContainer > * {
+        border: 1px solid var(--primary-color);
+        padding: 20px;
+        grid-column: col-start / span 12;
+        justify-content: center;
+    }
+
+    h1 {
+        align-items: center;
+    }
+
+    h1 img {
+        float: bottom;
+        width: 100%;
+    }
+
+    #menu ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: var(--primary-color);
+    }
+
+    #menu li {
+        float: none;
+    }
+
+    #menu li a {
+        display: block;
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    #menu li a:hover {
+        background-color: var(--secondary-color);
+    }
+
+    #mHome, #mT20, #topRatedCardPH, .hide {
+        display: none;
+    }
+
+    #survey {
+        margin: auto;
+    }
+
+    #searchButton, #subscribe {
+        width: 100%;
+        font-size: 22px;
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+    
+    .searchResults {
+        width: 100%;
+        display: block;
+        flex-wrap: wrap;
+    }
+
+    .searchResults ul {
+        list-style-type: none;
+        flex: auto;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .searchResults img {
+        max-width: 300px;
+        max-height: auto;
+    }
+
+    .card {
+        text-align: center;
+    }
+
+    .card li {
+        border: 5px;
+        border-radius: 5px;
+        transition: 0.3s;
+        width: 100%;
+    }
+
+    .card li img {
+        max-width: 300px;
+        max-height: auto;
+    }
+
+
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+        list-style: none;
+    }
+
+    .pagination li {
+        width: auto;
+        flex: 0 0 auto;
+    }
+
+    .pagination li a {
+        display: block;
+        background-color: var(--secondary-color);
+        padding: 4px;
+        border: 1px solid var(--secondary-color);
+        text-decoration: none;  
+        border-radius: 5px; /* add rounded borders */
+    }
+
+    .pagination li a:hover {
+        background-color: var(--primary-color);
+        color: white;
+        box-shadow: #f33535;
+    }
+
+    @media (min-width: 768px) {
+        #mHome, .hide {
+            display: block;
+        }
+
+        #mSearch, #mUpcoming {
+            display: none;
+        }
+
+        #menu .menuLeft {
+            float: left;
+        }
+
+        #menu .menuRight {
+            float: right;
+        }
+
+        h1 img {
+            width: auto;
+        }
+
+        #search {
+            grid-column: col-start / span 7;
+            grid-row: 2;
+        }
+
+        #upcoming {
+            grid-column: col-start 8 / span 5;
+            grid-row: 2;
+        }
+    }
+
+    @media (min-width: 1097px) {
+        #mHome, #mT20, .hide {
+            display: block;
+        }
+
+        #mSearch, #mUpcoming, #mPopular, #mTopRated {
+            display: none;
+        }
+
+        #menu .menuLeft {
+            float: left;
+        }
+
+        #menu .menuRight, h1 img {
+            float: right;
+        }
+
+        h1 img {
+            width: auto;
+        }
+
+        #search {
+            grid-column: col-start / span 8;
+            grid-row: 2;
+        }
+
+        #upcoming {
+            grid-column: col-start 9 / span 4;
+            grid-row: 2;
+        }
+
+        #popular {
+            grid-column: col-start / span 6;
+            grid-row: 3;
+        }
+
+        #topRated {
+            grid-column: col-start 7 / span 6;
+            grid-row: 3;
+        }
+    }

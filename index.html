@@ -3,119 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="style.css">
 <title>WebTech-Film Database</title>
-
-<style>
-    :root {
-        --primary-color: #1d1a45;
-        --secondary-color: #f33535;
-        background-color: #dbeaf1;
-    }
-
-</style>
 
 <body>
 
-<h1>WebTech-Film Database</h1>
+<div class="gridContainer">
+    <header>
+        <a href="#main" class="skip">Skip to main content</a>
+    </header>
+    <h1>WebTech - Film Database<img src="images/WebTech logo.png" alt="WebTech Logo 'A ClapperBoard' to the left of the company name"></h1>
+    <nav id="menu">
+        <ul>
+            <li id="mHome" class="menuLeft"><a href="#home">Home</a></li>
+            <li id="mSearch" class="menuLeft"><a href="#search">Search</a></li>
+            <li id="mUpcoming" class="menuLeft"><a href="#upcoming">Upcoming Movies</a></li>
+            <li id="mT20" class="menuRight"><a href="#top20">Top 20 Lists</a></li>
+            <li id="mPopular" class="menuRight"><a href="#popular">Popular Movies</a></li>
+            <li id="mTopRated" class="menuRight"><a href="#topRated">Top Rated Movies</a></li>
+            <li id="mSurvey" class="menuRight"><a href="#survey">Movie Survey</a></li>
+        </ul>
+    </nav>
 
-<label for="searchInput">Search</label>
+    <main id="main" tabindex="-1">
+    <section id="home" class="gridContainer">
+        <div id="search">
+            <h2>Welcome to WebTech film fans!!</h2>
+            <p>
+                At WebTech we strive to provide you with the ultimate film fan experience. 
+                Whether it's perusing the top rated or most popular films of the of day,
+                eyeing up an upcoming release for a future visit to the cinema or searching your 
+                favourite film franchises, directors or actors. You can do it all at WebTech.
+                We hope you enjoy the experience and subscribe to our weekly newsletter to receive
+                all the latest movie news.<br><b>Thanks for popping in from all of us at WebTech!!</b>
+            </p>
 
-<input type="text" id="searchInput" placeholder="Movie Title"><br>
+            <form class="searchInput">
+                <h2>Search (Movie Title or Person):</h2>
+                <label for="searchInput">Search: </label>
+                <input type="text" id="searchInput" name="searchInput" placeholder="eg: Jurassic Park, Steven Speilberg"><br>
+                <br>
+                <label for="searchBy">Search By: </label>
+                <select id="searchBy" name="searchBy">
+                    <option value="Movie Title">Movie Title</option>
+                    <option value="Person">Person</option>
+                </select><br>
+                <br>
+                <input id="searchButton" type="button" onclick="search()" value="Search"><br>
 
-<input type="button" onclick="searchTitle()" value="Search">
+            </form>
+            <div class="searchResults">
+                <ul id="searchResultsPh">Search Results</ul>
+            </div>
+        </div>
+        <div id="upcoming">
+            <h2 class="card">Upcoming Movies:</h2>
+            <ul id="upcomingMoviesPagi" class="pagination card"></ul>
+            <ul id="upcomingMoviesPH" class="upcomingMovies card"></ul>
+        </div>
+    </section>
 
-<input type="button" onclick="topRated()" value="Top Rated"><br>
+    <section id="top20" class="gridContainer">
+        <div id="topRated">
+            <h2>Top Rated Movies</h2>
+            <table id="topRatedMovies">
+                <tr>
+                    <th>#</th>
+                    <th colspan="2">Movie Title</th>
+                    <th class="hide">Overview</th>
+                    <th class="switch">Rating</th>
+                </tr>
+                <tbody id="topRatedMoviesTableBody"></tbody>
+            </table>
+        </div>
 
-<input type="button" onclick="popular()" value="Popular"><br>
+        <div id="popular">
+            <h2>Popular Movies</h2>
+            <table id="popularMovies">
+                <tr>
+                    <th>#</th>
+                    <th colspan="2">Movie Title</th>
+                    <th class="hide">Overview</th>
+                    <th class="switch">Votes</th>
+                </tr>
+                <tbody id="popularMoviesTableBody"></tbody>
+            </table>
+        </div>
+    </section>
 
-<div class="movies"></div>
+    <section id="survey" class="gridContainer">
+        <h2>Monthly Newsletter</h2>
+        <p>Complete our survey and subscribe for our weekly newsletter to recieve all the latest movie news, gossip and reviews.</p>
+        <form action="/action_page.php" method="post">
+            <label for="fName">First Name: </label>
+            <input type="text" id="fName" name="fName" placeholder="eg: John" required>
+            <label for="lName">Last Name: </label>
+            <input type="text" id="lName" name="lName" placeholder="eg: Smith" required>
+            <label for="email">Email Address: </label>
+            <input type="email" id="email" name="email" placeholder="eg: john.smit@me.com" required>
+            <label for="fGenre">Favourite Genres: </label>
+            <input type="text" id="fGenre" name="fGenre" list="dynamicGenres">
+            <p>What streaming services do you currently subscribe to?</p>
+            <input type="checkbox" id="check1" name="streamingServices" value="AmazonPrime">
+            <label for="check1">Amazon Prime</label>
+            <input type="checkbox" id="check2" name="streamingServices" value="Disney+">
+            <label for="check2">Disney +</label>
+            <input type="checkbox" id="check3" name="streamingServices" value="Netflix">
+            <label for="check3">Netflix</label>
+            <input type="checkbox" id="check4" name="streamingServices" value="NowTV">
+            <label for="check4">Now TV</label>
+            <p>What is your favourite era for Movies?</p>
+            <input type="radio" id="radio1" name="era" value="1920s">
+            <label for="radio1">1920s</label>
+            <input type="radio" id="radio2" name="era" value="1930s">
+            <label for="radio2">1930s</label>
+            <input type="radio" id="radio3" name="era" value="1940s">
+            <label for="radio3">1940s</label>
+            <input type="radio" id="radio4" name="era" value="1950s">
+            <label for="radio4">1950s</label>
+            <input type="radio" id="radio5" name="era" value="1960s">
+            <label for="radio5">1960s</label>
+            <input type="radio" id="radio6" name="era" value="1970s">
+            <label for="radio6">1970s</label>
+            <input type="radio" id="radio7" name="era" value="1980s">
+            <label for="radio7">1980s</label>
+            <input type="radio" id="radio8" name="era" value="1990s">
+            <label for="radio8">1990s</label>
+            <input type="radio" id="radio9" name="era" value="2000s">
+            <label for="radio9">2000s</label>
+            <input type="radio" id="radio10" name="era" value="2010s">
+            <label for="radio10">2010s</label>
+            <input type="radio" id="radio11" name="era" value="2020s">
+            <label for="radio11">2020s</label>
+            <input type="submit" id="subscribe" value="Subscribe">
 
-<section id="topRatedMovies">
- 
-</section>
+        </form>
+        <datalist id="dynamicGenres"></datalist>
 
+    </section>
+    </main>
 
-<input type="button" onclick="populateGenre()" value="Populate Genres"><br>
+</div>
 
-<label for="selectGenre">Movie Genre</label>
-
-<input type="text" id="selectGenre" list="dynamicGenres">
-
-<datalist id="dynamicGenres"></datalist>
-
-
-<script>
-    async function populateGenre() {
-        const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=099030c469492bfd07f8012773a7f0fb";
-
-        const response = await fetch(url);
-
-        const json = await response.json();
-
-        const datalist = document.getElementById("dynamicGenres");
-
-        datalist.innerHTML = ''; // Clear existing options
-
-        json.genres.forEach(genre => {
-            const option = document.createElement("option");
-            option.id = genre.id;
-            option.value = genre.name;
-            datalist.appendChild(option);
-        });  
-    }
-
-    async function topRated() {
-        const url = "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=099030c469492bfd07f8012773a7f0fb";
-
-        const response = await fetch(url);
-
-        const json = await response.json();
-
-        //console.log(json)
-
-        const list = json.results;
-
-        list.map((item) => {
-            const name = item.title;
-            const poster = `https://image.tmdb.org/t/p/w200${item.poster_path}`;
-            const movie = `<li><img src="${poster}"><h2>${name}</h2></li>`;
-            document.querySelector(".movies").innerHTML += movie;
-        })
-    }
-
-    async function popular() {
-        const url = "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=099030c469492bfd07f8012773a7f0fb";
-
-        const response = await fetch(url);
-
-        const json = await response.json();
-
-        console.log(json)
-
-        /*const list = json.results;
-
-        list.map((item) => {
-            const name = item.title;
-            const poster = item.poster_path;
-            const movie = `<li><img src="${poster}"><h2>${name}</h2></li>`;
-            document.querySelector(".movies").innerHTML += movie;
-        })*/
-    }
-
-    /*async function searchTitle() {
-        const searchInput = document.getElementById("searchInput").value
-
-        const updatedSearchInput = searchInput.replace(/ /g, "%20")
-
-        const url = "https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&api_key=099030c469492bfd07f8012773a7f0fb&query=" + updatedSearchInput;
-
-        const response = await fetch(url);
-
-        const json = await response.json();
-
-        console.log(json)
-    }*/
-</script>
+<script src="myScript.js"></script>
 </body>
 </html>
+
+<!--
+References:
+https://www.youtube.com/watch?v=ytNyibPQFhw&t=606s - Pulling List of Movies into HTML
+https://dev.to/codehuntersharath/create-dynamic-pagination-in-just-20-minutes-with-html-css-and-javascript-8la - Research into dynamic pagination.
+
+-->
